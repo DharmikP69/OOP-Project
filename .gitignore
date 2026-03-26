@@ -1,0 +1,12 @@
+# Compiled files
+*.exe
+*.o
+*.out
+*.obj
+
+# Debug files
+*.pdb
+*.ilk
+
+# VS Code settings (optional, remove if you want to share settings)
+.vscode/
