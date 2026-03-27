@@ -1,6 +1,6 @@
 // Changes :
 // 1. Added virtual destructor to Question class in line 38
-// 2. Added floating point division for percentage calculation in line 89 and 97
+// 2. Added floating point division for percentage calculation in line 94 and 101
 // 3. Added getline for player name input in line 195
 // 4. Added comments for better understanding
 #include <iostream>
