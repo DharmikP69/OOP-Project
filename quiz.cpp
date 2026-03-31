@@ -207,9 +207,7 @@ int main() {
  new Question("What is the size of int in C++ (32-bit system)?",
                         "2 bytes", "4 bytes", "8 bytes", "1 byte", 2));
 
-  
-
-  quiz.startQuiz(player);
+    quiz.startQuiz(player);
 
   player.displayResult();
 
