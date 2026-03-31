@@ -3,6 +3,8 @@
 // 2. Added floating point division for percentage calculation in line 94 and 101
 // 3. Added getline for player name input in line 195
 // 4. Added comments for better understanding
+//5. remonve bonus system
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -36,29 +38,6 @@ public:
   int getCorrectAnswer() { return correctAnswer; }
 
   virtual ~Question() {}
-};
-
-class BonusQuestion : public Question {
-private:
-  int bonusPoints;
-
-public:
-  BonusQuestion(string q, string a, string b, string c, string d, int correct,
-                int bonus)
-      : Question(q, a, b, c, d, correct) {
-    bonusPoints = bonus;
-  }
-
-  void display() override {
-    cout << "\nBONUS QUESTION (+" << bonusPoints << " extra points)" << endl;
-    cout << questionText << endl;
-    cout << "  1. " << options[0] << endl;
-    cout << "  2. " << options[1] << endl;
-    cout << "  3. " << options[2] << endl;
-    cout << "  4. " << options[3] << endl;
-  }
-
-  int getBonusPoints() { return bonusPoints; }
 };
 
 class Player {
@@ -159,16 +138,9 @@ public:
       player.incrementTotal();
 
       if (questions[i]->checkAnswer(answer)) {
-
-        BonusQuestion *bq = dynamic_cast<BonusQuestion *>(questions[i]);
-        if (bq != nullptr) {
-          int pts = 10 + bq->getBonusPoints();
-          player.addScore(pts);
-          cout << "Correct! +" << pts << " points (with bonus!)" << endl;
-        } else {
           player.addScore(10);
           cout << "Correct! +10 points" << endl;
-        }
+        
       } else {
         cout << "Wrong! Correct answer was: "
              << questions[i]->getCorrectAnswer() << endl;
@@ -232,13 +204,10 @@ int main() {
                                 "Encapsulation", "Polymorphism", "Compilation",
                                 "Inheritance", 3));
 
-  quiz.addQuestion(
-      new BonusQuestion("What is the size of int in C++ (32-bit system)?",
-                        "2 bytes", "4 bytes", "8 bytes", "1 byte", 2, 5));
+ new Question("What is the size of int in C++ (32-bit system)?",
+                        "2 bytes", "4 bytes", "8 bytes", "1 byte", 2));
 
-  quiz.addQuestion(new BonusQuestion(
-      "Which concept allows same function name with different parameters?",
-      "Overriding", "Encapsulation", "Overloading", "Abstraction", 3, 5));
+  
 
   quiz.startQuiz(player);
 
